@@ -2,24 +2,24 @@ const env = require('dotenv').config()
 //Aqui é a conexão com o banco de dados, aviso que usei o MySQL para evitar erros
 module.exports = {
   "development": {
-    "username": //Credenciais>_USERNAME,
-    "password": //Credenciais>_PASSWORD,
-    "database": //Credenciais>_DATABASE,
-    "host": //Credenciais>_HOST,
-    "dialect": //Credenciais>_DIALECT(vai ser mysql)
+    "username": process.env.DB_USERNAME,
+    "password": process.env.DB_PASSWORD,
+    "database": process.env.DB_DATABASE,
+    "host": process.env.DB_HOST,
+    "dialect": process.env.DB_DIALECT
   },
   "test": {
-    "username": //Credenciais>_USERNAME,
-    "password": //Credenciais>_PASSWORD,
-    "database": //Credenciais>_DATABASE,
-    "host": //Credenciais>_HOST,
-    "dialect": //Credenciais>_DIALECT(vai ser mysql)
+    "username": process.env.DB_USERNAME,
+    "password": process.env.DB_PASSWORD,
+    "database": process.env.DB_DATABASE,
+    "host": process.env.DB_HOST,
+    "dialect": process.env.DB_DIALECT
   },
   "production": {
-    "username": //Credenciais>_USERNAME,
-    "password": //Credenciais>_PASSWORD,
-    "database": //Credenciais>_DATABASE,
-    "host": //Credenciais>_HOST,
-    "dialect": //Credenciais>_DIALECT(vai ser mysql)
+    "username": process.env.DB_USERNAME,
+    "password": process.env.DB_PASSWORD,
+    "database": process.env.DB_DATABASE,
+    "host": process.env.DB_HOST,
+    "dialect": process.env.DB_DIALECT
   }
 }
