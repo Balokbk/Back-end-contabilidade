@@ -4,6 +4,6 @@ const testServer = require('./src/helpers/testConnectionHelper.js')
 const PORT = 3000
 
 app.listen(PORT, () =>{
-    console.log('Server On')
-    // testServer()
+    console.log(`Servidor rodando na porta ${PORT}`)
+    testServer()
 })

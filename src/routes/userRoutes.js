@@ -1,11 +1,9 @@
 const { Router } = require('express')
 const UserController = require('../controllers/UserController.js')
-const AccountController = require('../controllers/AccountController.js')
 const TransactionController = require('../controllers/TransactionController.js')
 const authenticateToken = require('../middlewares/authMiddleware.js')
 
 const userController = new UserController()
-const accountController = new AccountController()
 const transactionController = new TransactionController()
 
 const router = Router()

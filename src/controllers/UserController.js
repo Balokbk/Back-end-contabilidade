@@ -21,6 +21,16 @@ class UserController extends Controller{
         try{
             const user = await this.entityService.getById(where)
             const account = await accountServices.getAccountByUserId(where)
+
+            if (user){
+                delete user.password_hash; // Removendo informação sensível da resposta
+                delete user.createdAt;
+                delete user.updatedAt;
+            }
+            if(account){
+                delete account.createdAt;
+                delete account.updatedAt;
+            }
             return res.status(200).json({user:user,account:account})
         }catch(error){
             return res.status(500).json({type:error, message:error.message})
@@ -45,7 +55,7 @@ class UserController extends Controller{
                 user_id: newUser.user_id,
                 balance: parseFloat(balance) || 0
             })
-            return res.status(201).json({ message:'Registro criado com sucesso', User: newUser, Account: newAccount })
+            return res.status(201).json({ message:'Registro criado com sucesso', UserEmail: newUser.email, AccountId: newAccount.account_id, AccountUserId: newAccount.user_id, AccountBalance: newAccount.balance })
         }catch(error){
             if(error.name === 'SequelizeUniqueConstraintError'){
                 return res.status(409).json({message:'Email já cadastrado'})
@@ -81,7 +91,7 @@ class UserController extends Controller{
                 return res.status(401).json({message:'Email ou senha incorretos'})
             }
             const token = generateToken(user.user_id)
-            //Após pegar o token, avisar o front de armazenar o token no localStorage, Bearer e esssas coisas
+            //Após pegar o token, avisar o front de armazenar o token no localStorage: Authorization: Bearer <token>
             return res.status(200).json({message:'Login bem sucedido', token})
         }catch(error){
             return res.status(500).json({type:error, message:error.message})

@@ -47,7 +47,8 @@ class TransactionController extends Controller{
             if(!transactions || transactions.length === 0){
                 return res.status(404).json({message:'Pode estar vazio ou o id está errado'})
             }
-            return res.status(200).json(transactions)
+            const sanitized = transactions.map(({ updatedAt, ...rest }) => rest)
+            return res.status(200).json(sanitized)
         }catch(error){
             res.status(500).json({message:'Error', Message:error.Message})
         }
